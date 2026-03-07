@@ -48,7 +48,7 @@ resource "aws_route_table" "t2-micro-public_rt" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw.id
+    gateway_id = aws_internet_gateway.t2-micro-igw.id
   }
 
   tags = {
@@ -59,8 +59,8 @@ resource "aws_route_table" "t2-micro-public_rt" {
 # public rt assoc
 
 resource "aws_route_table_association" "t2-micro-public_rt_assoc" {
-  subnet_id      = aws_subnet.t2-micro-pub_subnet
-  route_table_id = aws_route_table.t2-micro-public_rt
+  subnet_id      = aws_subnet.t2-micro-pub_subnet.id
+  route_table_id = aws_route_table.t2-micro-public_rt.id
 }
 
 # security group
