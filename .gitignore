@@ -1,0 +1,11 @@
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.*
+*.tfvars
+.terraform.lock.hcl
+
+# Private keys
+*.pem
+*.key
+*.pub
