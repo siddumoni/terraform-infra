@@ -1,50 +1,50 @@
 # vpc 
 
-resource "aws_vpc" "t2.micro-vpc" {
+resource "aws_vpc" "t2-micro-vpc" {
   cidr_block       = var.vpc_cidr_block
   instance_tenancy = "default"
 
   tags = {
-    Name = "t2.micro-vpc"
+    Name = "t2-micro-vpc"
   }
 }
 
 # public subnet
 
-resource "aws_subnet" "t2.micro-pub_subnet" {
-  vpc_id     = aws_vpc.t2.micro-vpc.id
+resource "aws_subnet" "t2-micro-pub_subnet" {
+  vpc_id     = aws_vpc.t2-micro-vpc.id
   cidr_block = var.pub_subnet_cidr_block
 
   tags = {
-    Name = "t2.micro-pub_subnet"
+    Name = "t2-micro-pub_subnet"
   }
 }
 
 # private subnet
 
-resource "aws_subnet" "t2.micro-pri_subnet" {
-  vpc_id     = aws_vpc.t2.micro-vpc.id
+resource "aws_subnet" "t2-micro-pri_subnet" {
+  vpc_id     = aws_vpc.t2-micro-vpc.id
   cidr_block = var.pri_subnet_cidr_block
 
   tags = {
-    Name = "t2.micro-pri_subnet"
+    Name = "t2-micro-pri_subnet"
   }
 }
 
 # igw
 
-resource "aws_internet_gateway" "t2.micro-igw" {
-  vpc_id = aws_vpc.t2.micro-vpc.id
+resource "aws_internet_gateway" "t2-micro-igw" {
+  vpc_id = aws_vpc.t2-micro-vpc.id
 
   tags = {
-    Name = "t2.micro-igw"
+    Name = "t2-micro-igw"
   }
 }
 
 # public rt
 
-resource "aws_route_table" "t2.micro-public_rt" {
-  vpc_id = aws_vpc.t2.micro-vpc.id
+resource "aws_route_table" "t2-micro-public_rt" {
+  vpc_id = aws_vpc.t2-micro-vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -52,23 +52,23 @@ resource "aws_route_table" "t2.micro-public_rt" {
   }
 
   tags = {
-    Name = "t2.micro-public_rt"
+    Name = "t2-micro-public_rt"
   }
 }
 
 # public rt assoc
 
-resource "aws_route_table_association" "t2.micro-public_rt_assoc" {
-  subnet_id      = aws_subnet.t2.micro-pub_subnet
-  route_table_id = aws_route_table.t2.micro-public_rt
+resource "aws_route_table_association" "t2-micro-public_rt_assoc" {
+  subnet_id      = aws_subnet.t2-micro-pub_subnet
+  route_table_id = aws_route_table.t2-micro-public_rt
 }
 
 # security group
 
-resource "aws_security_group" "t2.micro-sg" {
+resource "aws_security_group" "t2-micro-sg" {
   name        = "SG"
   description = "Allow SG inbound traffic and all outbound traffic"
-  vpc_id      = aws_vpc.t2.micro-vpc.id
+  vpc_id      = aws_vpc.t2-micro-vpc.id
 
   egress {
     from_port        = 0
@@ -122,6 +122,6 @@ resource "aws_security_group" "t2.micro-sg" {
   }
 
   tags = {
-    Name = "t2.micro-sg"
+    Name = "t2-micro-sg"
   }
 }
