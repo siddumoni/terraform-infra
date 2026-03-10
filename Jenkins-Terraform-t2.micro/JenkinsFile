@@ -2,13 +2,6 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Checkout Code') {
-            steps {
-                git 'https://github.com/siddumoni/terraform-infra.git'
-            }
-        }
-
         stage('Terraform Init') {
             steps {
                 dir('Jenkins-Terraform-t2.micro') {
@@ -19,7 +12,7 @@ pipeline {
 
         stage('Terraform Validate') {
             steps {
-                dir('project') {
+                dir('Jenkins-Terraform-t2.micro') {
                     sh 'terraform validate'
                 }
             }
@@ -27,7 +20,7 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                dir('project') {
+                dir('Jenkins-Terraform-t2.micro') {
                     sh 'terraform plan'
                 }
             }
@@ -35,7 +28,7 @@ pipeline {
 
         stage('Terraform Apply') {
             steps {
-                dir('project') {
+                dir('Jenkins-Terraform-t2.micro') {
                     sh 'terraform apply -auto-approve'
                 }
             }
