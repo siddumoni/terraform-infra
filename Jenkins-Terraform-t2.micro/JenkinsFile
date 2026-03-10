@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        AWS_DEFAULT_REGION = "ap-south-1"
-    }
-
     stages {
 
         stage('Checkout Code') {
@@ -15,32 +11,33 @@ pipeline {
 
         stage('Terraform Init') {
             steps {
-                sh 'terraform init'
-            }
-        }
-
-        stage('Terraform Format') {
-            steps {
-                sh 'terraform fmt'
+                dir('Jenkins-Terraform-t2.micro') {
+                    sh 'terraform init'
+                }
             }
         }
 
         stage('Terraform Validate') {
             steps {
-                sh 'terraform validate'
+                dir('project') {
+                    sh 'terraform validate'
+                }
             }
         }
 
         stage('Terraform Plan') {
             steps {
-                sh 'terraform plan'
+                dir('project') {
+                    sh 'terraform plan'
+                }
             }
         }
 
         stage('Terraform Apply') {
             steps {
-                input message: "Approve Terraform Apply?"
-                sh 'terraform apply -auto-approve'
+                dir('project') {
+                    sh 'terraform apply -auto-approve'
+                }
             }
         }
 
