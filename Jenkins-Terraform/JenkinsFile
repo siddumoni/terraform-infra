@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Terraform Init -migrate-state') {
+        stage('terraform init -reconfigure') {
             steps {
                 dir('Jenkins-Terraform') {
                     sh 'terraform init'
