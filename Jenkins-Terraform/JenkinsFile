@@ -29,7 +29,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 dir('Jenkins-Terraform') {
-                    sh 'terraform apply -input=false -auto-approve'
+                    sh 'terraform destroy -input=false -auto-approve'
                 }
             }
         }
