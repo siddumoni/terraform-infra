@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('terraform init -reconfigure') {
+        stage('Terraform Init') {
             steps {
                 dir('Jenkins-Terraform') {
-                    sh 'terraform init'
+                    sh 'terraform init -reconfigure'
                 }
             }
         }
