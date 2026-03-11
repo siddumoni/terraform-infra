@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Terraform Init') {
             steps {
-                dir('Jenkins-Terraform') {
+                dir('Jenkins_Sonar_ArgoCD_K8s-t3.medium') {
                     sh 'terraform init -reconfigure'
                 }
             }
@@ -12,7 +12,7 @@ pipeline {
 
         stage('Terraform Validate') {
             steps {
-                dir('Jenkins-Terraform') {
+                dir('Jenkins_Sonar_ArgoCD_K8s-t3.medium') {
                     sh 'terraform validate'
                 }
             }
@@ -20,7 +20,7 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                dir('Jenkins-Terraform') {
+                dir('Jenkins_Sonar_ArgoCD_K8s-t3.medium') {
                     sh 'terraform plan -input=false'
                 }
             }
@@ -28,8 +28,8 @@ pipeline {
 
         stage('Terraform Apply') {
             steps {
-                dir('Jenkins-Terraform') {
-                    sh 'terraform destroy -input=false -auto-approve'
+                dir('Jenkins_Sonar_ArgoCD_K8s-t3.medium') {
+                    sh 'terraform apply -input=false -auto-approve'
                 }
             }
         }
