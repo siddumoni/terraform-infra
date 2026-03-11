@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Terraform Init') {
+        stage('Terraform Init -migrate-state') {
             steps {
                 dir('Jenkins-Terraform') {
                     sh 'terraform init'
