@@ -27,7 +27,7 @@ module "vpc" {
 module "ec2" {
   source = "./Modules/ec2/"
 
-  ami = "ami-02774d409be696d81"
+  ami = "ami-019715e0d74f695be"
   instance_type = "t3.medium"
   region = "ap-south-1"
   key_name = "mainkey"
