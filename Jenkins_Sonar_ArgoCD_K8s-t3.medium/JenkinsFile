@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    options {
+        ansiColor('xterm')   // 👈 Add this at the top-level options block
+    }
+
     stages {
         stage('Terraform Init') {
             steps {
